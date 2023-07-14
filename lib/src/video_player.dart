@@ -155,18 +155,18 @@ class VideoPlayer {
 
     // The error event fires when some form of error occurs while attempting to load or perform the media.
     _videoElement.onError.listen((html.Event _) {
+      /*
       setBuffering(false);
       // The Event itself (_) doesn't contain info about the actual error.
       // We need to look at the HTMLMediaElement.error.
       // See: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error
       final html.MediaError error = _videoElement.error!;
-      print("we have an error");
-      print(error.code);
+   
       _eventController.addError(PlatformException(
         code: _kErrorValueToErrorName[error.code]!,
         message: error.message != '' ? error.message : _kDefaultErrorMessage,
         details: _kErrorValueToErrorDescription[error.code],
-      ));
+      ));*/
     });
 
     _videoElement.onEnded.listen((dynamic _) {
@@ -183,17 +183,14 @@ class VideoPlayer {
   /// When called from some user interaction (a tap on a button), the above
   /// limitation should disappear.
   Future<void> play() {
-    print("playing");
     return _videoElement.play().catchError((Object e) {
-      print("caught error");
       // play() attempts to begin playback of the media. It returns
       // a Promise which can get rejected in case of failure to begin
       // playback for any reason, such as permission issues.
       // The rejection handler is called with a DomException.
       // See: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
       final html.DomException exception = e as html.DomException;
-      print(e);
-      print("play error");
+
       _eventController.addError(PlatformException(
         code: exception.name,
         message: exception.message,
