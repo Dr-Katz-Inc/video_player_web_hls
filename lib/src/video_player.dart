@@ -108,6 +108,7 @@ class VideoPlayer {
         }));
         _hls!.on('hlsError', allowInterop((dynamic _, dynamic data) {
           final ErrorData _data = ErrorData(data);
+
           if (_data.fatal) {
             _eventController.addError(PlatformException(
               code: _kErrorValueToErrorName[2]!,
@@ -159,6 +160,8 @@ class VideoPlayer {
       // We need to look at the HTMLMediaElement.error.
       // See: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error
       final html.MediaError error = _videoElement.error!;
+      print("we have an error");
+      print(error.code);
       _eventController.addError(PlatformException(
         code: _kErrorValueToErrorName[error.code]!,
         message: error.message != '' ? error.message : _kDefaultErrorMessage,
@@ -319,9 +322,9 @@ class VideoPlayer {
   bool canPlayHlsNatively() {
     bool canPlayHls = false;
     try {
-      final String canPlayType = _videoElement.canPlayType('application/vnd.apple.mpegurl');
-      canPlayHls =
-          canPlayType != '';
+      final String canPlayType =
+          _videoElement.canPlayType('application/vnd.apple.mpegurl');
+      canPlayHls = canPlayType != '';
     } catch (e) {}
     return canPlayHls;
   }
