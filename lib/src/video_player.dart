@@ -90,13 +90,8 @@ class VideoPlayer {
                   return;
                 }
 
-                if (headers.containsKey('useCookies')) {
-                  xhr.withCredentials = true;
-                }
                 headers.forEach((String key, String value) {
-                  if (key != 'useCookies') {
-                    xhr.setRequestHeader(key, value);
-                  }
+                  xhr.setRequestHeader(key, value);
                 });
               },
             ),
@@ -107,7 +102,7 @@ class VideoPlayer {
           _hls!.loadSource(uri.toString());
         }));
         _hls!.on('hlsError', allowInterop((dynamic _, dynamic data) {
-          final ErrorData _data = ErrorData(data);
+          /* final ErrorData _data = ErrorData(data);
 
           if (_data.fatal) {
             _eventController.addError(PlatformException(
@@ -115,7 +110,7 @@ class VideoPlayer {
               message: _data.type,
               details: _data.details,
             ));
-          }
+          }*/
         }));
         _videoElement.onCanPlay.listen((dynamic _) {
           if (!_isInitialized) {

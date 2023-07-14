@@ -79,9 +79,9 @@ class VideoPlayerPluginHls extends VideoPlayerPlatform {
 
     final VideoElement videoElement = VideoElement()
       ..id = 'videoElement-$textureId'
-      ..style.border = 'none'
-      ..style.height = '100%'
-      ..style.width = '100%';
+      ..style.border = 'none';
+    //..style.height = '100%'
+    //..style.width = '100%';
 
     videoElement.attributes['playsinline'] = 'true';
 
