@@ -190,6 +190,8 @@ class VideoPlayer {
       // The rejection handler is called with a DomException.
       // See: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
       final html.DomException exception = e as html.DomException;
+      print(e);
+      print("play error");
       _eventController.addError(PlatformException(
         code: exception.name,
         message: exception.message,
