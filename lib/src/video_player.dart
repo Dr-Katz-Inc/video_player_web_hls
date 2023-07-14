@@ -101,17 +101,7 @@ class VideoPlayer {
         _hls!.on('hlsMediaAttached', allowInterop((dynamic _, dynamic __) {
           _hls!.loadSource(uri.toString());
         }));
-        _hls!.on('hlsError', allowInterop((dynamic _, dynamic data) {
-          /* final ErrorData _data = ErrorData(data);
-
-          if (_data.fatal) {
-            _eventController.addError(PlatformException(
-              code: _kErrorValueToErrorName[2]!,
-              message: _data.type,
-              details: _data.details,
-            ));
-          }*/
-        }));
+        _hls!.on('hlsError', allowInterop((dynamic _, dynamic data) {}));
         _videoElement.onCanPlay.listen((dynamic _) {
           if (!_isInitialized) {
             _isInitialized = true;
