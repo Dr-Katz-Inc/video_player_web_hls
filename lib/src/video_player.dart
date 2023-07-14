@@ -101,7 +101,6 @@ class VideoPlayer {
         _hls!.on('hlsMediaAttached', allowInterop((dynamic _, dynamic __) {
           _hls!.loadSource(uri.toString());
         }));
-        _hls!.on('hlsError', allowInterop((dynamic _, dynamic data) {}));
         _videoElement.onCanPlay.listen((dynamic _) {
           if (!_isInitialized) {
             _isInitialized = true;
@@ -140,6 +139,7 @@ class VideoPlayer {
 
     // The error event fires when some form of error occurs while attempting to load or perform the media.
     _videoElement.onError.listen((html.Event _) {
+      print("errored out");
       /*
       setBuffering(false);
       // The Event itself (_) doesn't contain info about the actual error.
