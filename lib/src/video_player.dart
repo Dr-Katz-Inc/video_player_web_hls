@@ -183,7 +183,9 @@ class VideoPlayer {
   /// When called from some user interaction (a tap on a button), the above
   /// limitation should disappear.
   Future<void> play() {
+    print("playing");
     return _videoElement.play().catchError((Object e) {
+      print("caught error");
       // play() attempts to begin playback of the media. It returns
       // a Promise which can get rejected in case of failure to begin
       // playback for any reason, such as permission issues.
